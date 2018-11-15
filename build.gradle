@@ -1,0 +1,73 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'gradle.plugin.com.benjaminsproule:swagger-gradle-plugin:1.0.1'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.benjaminsproule.swagger'
+
+
+group = 'com.sanchi.java.swagger'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('io.swagger:swagger-core:1.5.3')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+swagger {
+    apiSource {
+        springmvc = true
+        locations = ['com.sanchi.java.swagger']
+        schemes = ['http']
+        host = 'localhost:8081'
+        basePath = '/swagger'
+        info {
+            title = 'Spring Boot Swagger Integration'
+            version = 'v1'
+            description = 'Project to demonstrate swagger 2.0 integration with spring boot'
+            termsOfService = 'http://www.example.com/termsOfService'
+            contact {
+                email = 'email@email.com'
+                name = 'Name'
+                url = 'http://www.example.com'
+            }
+            license {
+                url = 'http://www.apache.org/licenses/LICENSE-2.0.html'
+                name = 'Apache 2.0'
+            }
+        }
+        securityDefinition {
+            name = 'ApiKeyAuth'
+            type = 'apiKey'
+            keyLocation = 'header' // valid values are query and header
+            keyName = 'x-api-key'
+        }
+        jsonExampleValues = true
+        templatePath = "${project.rootDir}/src/main/resources/templates/strapdown.html.hbs"
+        outputPath = "${project.rootDir}/generated/document.html"
+        // either generate JSON or HTML
+        //swaggerDirectory = "${project.rootDir}/generated/swagger-ui"
+    }
+}

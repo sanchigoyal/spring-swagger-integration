@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<title>API Document</title>
+
+<xmp theme="united" style="display:none;">
+#Spring Boot Swagger Integration
+
+
+## HTTP://localhost:8081/swagger
+
+
+Project to demonstrate swagger 2.0 integration with spring boot
+
+
+[**Contact the developer**](mailto:email@email.com)
+
+
+**Version** v1
+
+[**Terms of Service**](http://www.example.com/termsOfService)
+
+[**Apache 2.0**](http://www.apache.org/licenses/LICENSE-2.0.html)
+
+
+
+
+
+
+
+
+# Security Definitions
+
+
+### ApiKeyAuth
+
+
+
+<table>
+    <tr>
+        <th>type</th>
+        <th colspan="2">apiKey</th>
+    </tr>
+
+
+        <tr>
+            <th>name</th>
+            <th colspan="2">x-api-key</th>
+        </tr>
+
+
+        <tr>
+            <th>in</th>
+            <th colspan="2">HEADER</th>
+        </tr>
+
+</table>
+
+
+
+
+
+# APIs
+
+
+## /messages/
+
+
+### GET
+
+<a id="getMessages">Get all messages</a>
+
+Returns all messages
+
+
+
+
+
+
+
+#### Request
+
+
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>from</th>
+    <td>query</td>
+    <td>no</td>
+    <td>
+        
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (date)</td>
+    
+
+</tr>
+
+<tr>
+    <th>to</th>
+    <td>query</td>
+    <td>no</td>
+    <td>
+        
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (date)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | Successful operation | Array[<a href="#/definitions/Message">Message</a>]|
+| 401    | Unauthorized |  - |
+
+
+
+
+
+
+
+### POST
+
+
+<a id="createMessage">Create a message</a>
+
+Creates new message
+
+
+
+
+
+
+
+#### Request
+
+
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>
+        
+        
+    </td>
+    <td> - </td>
+
+    <td>
+    
+    <a href="#/definitions/Message">Message</a> 
+    </td>
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 201    | Successful operation | <a href="#/definitions/Message">Message</a>|
+| 401    | Unauthorized |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /messages/{messageId}
+
+
+### GET
+
+<a id="getMessage">Get message by Id</a>
+
+Returns a message matching identifier
+
+
+
+
+
+
+
+#### Request
+
+
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>messageId</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | Record exists | <a href="#/definitions/Message">Message</a>|
+| 401    | Unauthorized |  - |
+| 404    | No record found |  - |
+
+
+
+
+
+### PUT
+
+<a id="updateMessage">Update message</a>
+
+Updates an existing message
+
+
+
+
+
+
+
+#### Request
+
+
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>messageId</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+<tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>
+        
+        
+    </td>
+    <td> - </td>
+
+    <td>
+    
+    <a href="#/definitions/Message">Message</a> 
+    </td>
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | Successful operation | <a href="#/definitions/Message">Message</a>|
+| 401    | Unauthorized |  - |
+| 404    | No record found |  - |
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteMessage">Delete message</a>
+
+Deletes a message
+
+
+
+
+
+
+
+#### Request
+
+
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>messageId</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | Successful operation |  - |
+| 401    | Unauthorized |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Definitions
+
+## <a name="/definitions/Message">Message</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>id</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>code</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>code</td>
+            <td>A1</td>
+        </tr>
+    
+        <tr>
+            <td>message</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>required</td>
+            <td>message</td>
+            <td>My message</td>
+        </tr>
+    
+</table>
+
+
+
+</xmp>
+
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>
